@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.kilomobi.bbfoot.Async.PlayerGetAsync;
 import com.kilomobi.bbfoot.Async.PlayerPostAsync;
 
 public class MainActivity extends AppCompatActivity
@@ -32,10 +33,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Async
-        PlayerPostAsync async = new PlayerPostAsync(this, this);
-        // Params pour add un joueur
-        async.execute("1", "Android", "EnvoyeDepuisApp");
+//        // Async
+//        PlayerPostAsync asyncPost = new PlayerPostAsync(this, this);
+//        // Params pour add un joueur
+//        async.execute("1", "Android", "EnvoyeDepuisApp");
+
+        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
+        asyncGet.execute();
     }
 
     @Override

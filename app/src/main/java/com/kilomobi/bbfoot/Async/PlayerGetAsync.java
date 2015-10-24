@@ -8,29 +8,25 @@ import android.util.Log;
 
 import com.kilomobi.bbfoot.Global.Globale;
 
-import org.apache.http.NameValuePair;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 // ===========================================================
-// Async qui permet d'ajouter un joueur à la BDD
+// Async qui récupère la liste des joueurs de la BDD
 // ===========================================================
 
-public class PlayerPostAsync extends AsyncTask<String, Void, String> {
+public class PlayerGetAsync extends AsyncTask<String, Void, String> {
 
     ProgressDialog dialog;
     Activity mActivity;
     Context mContext;
 
-    public PlayerPostAsync(Activity activity, Context context) {
+    public PlayerGetAsync(Activity activity, Context context) {
         mActivity = activity;
         mContext = context;
         dialog = new ProgressDialog(activity);
@@ -44,30 +40,36 @@ public class PlayerPostAsync extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
     }
 
     @Override
     protected String doInBackground(String... params) {
-        // TODO Auto-generated method stub
         System.setProperty("http.keepAlive", "false");
         String response = "";
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost request = new HttpPost(Globale.webURL+Globale.CREATE);
+            HttpGet request = new HttpGet(Globale.webURL+Globale.GET);
 
-            //Prepare les params
-            List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
-            postParameters.add(new BasicNameValuePair("PlayerId", params[0]));
-            postParameters.add(new BasicNameValuePair("Prenom", params[1]));
-            postParameters.add(new BasicNameValuePair("Nom", params[2]));
+            // Envoi de la requête GET
+            HttpResponse httpResponse = httpClient.execute(request);
 
-            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(postParameters);
-            request.setEntity(formEntity);
+            // Récupère le JSON
+            JSONObject myObject = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
 
-            // Execute la requête POST
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            response = httpClient.execute(request, responseHandler);
+            JSONArray m_jArry = myObject.getJSONArray("Players");
+            int j_totalSize = m_jArry.length();
+            for (int i = 0; i<j_totalSize; i++) {
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
+
+                // Récupère les params
+                int jo_id = jo_inside.getInt("PlayerId");
+                String jo_nom = jo_inside.getString("Nom");
+                String jo_prenom = jo_inside.getString("Prenom");
+
+                Log.v("Get : ", jo_nom + " " + jo_prenom);
+            }
 
             Log.v("Get : ", response);
 
@@ -80,6 +82,6 @@ public class PlayerPostAsync extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-    dialog.dismiss();
+        dialog.dismiss();
     }
 }
