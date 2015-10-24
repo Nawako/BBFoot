@@ -21,16 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 // ===========================================================
-// Async qui permet de supprimer un joueur de la BDD
+// Async qui permet de modifier un joueur à la BDD
 // ===========================================================
 
-public class PlayerDeleteAsync extends AsyncTask<String, Void, String> {
+public class PlayerModifyAsync extends AsyncTask<String, Void, String> {
 
     ProgressDialog dialog;
     Activity mActivity;
     Context mContext;
 
-    public PlayerDeleteAsync(Activity activity, Context context) {
+    public PlayerModifyAsync(Activity activity, Context context) {
         mActivity = activity;
         mContext = context;
         dialog = new ProgressDialog(activity);
@@ -54,11 +54,13 @@ public class PlayerDeleteAsync extends AsyncTask<String, Void, String> {
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost request = new HttpPost(Globale.webURL+Globale.DELETE);
+            HttpPost request = new HttpPost(Globale.webURL+Globale.MODIFY);
 
             //Prepare les params
             List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
             postParameters.add(new BasicNameValuePair("PlayerId", params[0]));
+            postParameters.add(new BasicNameValuePair("Nom", params[1]));
+            postParameters.add(new BasicNameValuePair("Prenom", params[2]));
 
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(postParameters);
             request.setEntity(formEntity);
@@ -67,7 +69,7 @@ public class PlayerDeleteAsync extends AsyncTask<String, Void, String> {
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             response = httpClient.execute(request, responseHandler);
 
-            Log.v("Post_Delete : ", response);
+            Log.v("Post_Modify : ", response);
 
         } catch (Exception e) {
             e.printStackTrace();

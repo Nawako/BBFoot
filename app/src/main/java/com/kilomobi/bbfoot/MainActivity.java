@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.kilomobi.bbfoot.Async.PlayerDeleteAsync;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
+import com.kilomobi.bbfoot.Async.PlayerModifyAsync;
 import com.kilomobi.bbfoot.Async.PlayerPostAsync;
 
 public class MainActivity extends AppCompatActivity
@@ -42,11 +43,11 @@ public class MainActivity extends AppCompatActivity
 //        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
 //        asyncGet.execute();
 
-        PlayerDeleteAsync asyncDelete = new PlayerDeleteAsync(this, this);
-        asyncDelete.execute("4");
+//        PlayerDeleteAsync asyncDelete = new PlayerDeleteAsync(this, this);
+//        asyncDelete.execute("4");
 
-        PlayerDeleteAsync asyncModify = new PlayerDeleteAsync(this, this);
-        asyncDelete.execute("4");
+//        PlayerModifyAsync asyncModify = new PlayerModifyAsync(this, this);
+//        asyncModify.execute("6", "Fabrisse", "Modification");
     }
 
     @Override
