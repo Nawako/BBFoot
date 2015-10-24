@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_main"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="@color/colorAccent">
+
+            <TextView android:text="Team rouge :"
+                android:textSize="48dp"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/black"/>
+
+            <TextView android:text="Lorem Ispu"
+                android:textSize="34dp"
+                android:id="@+id/activity_main_red_joueur1"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/activity_main_red_profile1"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="left"
+                android:src="@drawable/sample"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+            <TextView android:text="Lorem Ispu"
+                android:textSize="34dp"
+                android:id="@+id/activity_main_red_profile2"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image2"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="left"
+                android:src="@drawable/sample"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/activity_main_red_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:backgroundTint="@color/colorPrimary"
+                    android:src="@android:drawable/ic_menu_add" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/activity_main_red_remove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:backgroundTint="@color/colorPrimary"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:paddingRight="16dp"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
+
+            <TextView android:text="Team bleu :"
+                android:textSize="48dp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/white"/>
+
+            <TextView android:text="Lorem Ispu"
+                android:textSize="34dp"
+                android:textColor="@android:color/white"
+                android:id="@+id/activity_main_tv_red_joueur1"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/activity_main_bleu_profile1"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="right"
+                android:src="@drawable/sample"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"/>
+
+            <TextView android:text="Lorem Ispu"
+                android:textSize="34dp"
+                android:textColor="@android:color/white"
+                android:id="@+id/activity_main_tv_red_joueur2"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/activity_main_bleu_profile2"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="right"
+                android:src="@drawable/sample"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/activity_main_bleu_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:src="@android:drawable/ic_menu_add" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/activity_main_bleu_remove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content">
+
+        <TextView android:text="Score :"
+            android:textSize="34dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/activity_main_tv_score"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:text="6"
+                android:textSize="200dp"
+                android:textColor="@android:color/white"
+                android:id="@+id/activity_main_tv_score_bleu"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView android:text=" - "
+                android:textSize="200dp"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView android:text="9"
+                android:textSize="200dp"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
