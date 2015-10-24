@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.kilomobi.bbfoot.Async.PlayerDeleteAsync;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
 import com.kilomobi.bbfoot.Async.PlayerPostAsync;
 
@@ -38,8 +39,14 @@ public class MainActivity extends AppCompatActivity
 //        // Params pour add un joueur
 //        async.execute("1", "Android", "EnvoyeDepuisApp");
 
-        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
-        asyncGet.execute();
+//        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
+//        asyncGet.execute();
+
+        PlayerDeleteAsync asyncDelete = new PlayerDeleteAsync(this, this);
+        asyncDelete.execute("4");
+
+        PlayerDeleteAsync asyncModify = new PlayerDeleteAsync(this, this);
+        asyncDelete.execute("4");
     }
 
     @Override

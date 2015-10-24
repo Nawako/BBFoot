@@ -55,6 +55,7 @@ public class PlayerGetAsync extends AsyncTask<String, Void, String> {
             // Envoi de la requête GET
             HttpResponse httpResponse = httpClient.execute(request);
 
+            // TODO enlever le traitement JSON de la méthode et le traiter dans une classe à part
             // Récupère le JSON
             JSONObject myObject = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
 
