@@ -5,7 +5,8 @@ package com.kilomobi.bbfoot.Global;
  */
 public class Globale {
     public static String webURL ="http://bbfoot.azurewebsites.net/api/";
-    public static String DELETE = "suppression";
-    public static String CREATE = "creation";
-    public static String MODIFY = "modification";
+    public static String GET = "player";
+    public static String DELETE = "player/suppression";
+    public static String CREATE = "player/creation";
+    public static String MODIFY = "player/modification";
 }
