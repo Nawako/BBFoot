@@ -33,4 +33,8 @@ dependencies {
     // MorphingButton
     // ======================================================
     compile 'com.github.dmytrodanylyk:android-morphing-button:e271da6'
+    // ======================================================
+    // Smash // Connectivity
+    // ======================================================
+    compile 'pl.appformation:smash:0.1.0'
 }
