@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_player_chooser_row_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#4a4a4a"
+    android:padding="8dp"
+    android:clickable="false">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_player_chooser_row_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="right"
+        android:layout_marginLeft="22dp"
+        android:src="@drawable/sample"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@android:color/white"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/activity_player_chooser_row_image"
+        android:layout_centerVertical="true">
+
+    <TextView
+        android:id="@+id/activity_player_chooser_row_player_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_toRightOf="@id/activity_player_chooser_row_image"
+        android:textColor="@color/background_material_light"
+        android:textStyle="bold"
+        android:textSize="38dp"
+        android:text="John"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/activity_player_chooser_row_player_firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_below="@id/activity_player_chooser_row_player_name"
+        android:layout_toRightOf="@id/activity_player_chooser_row_image"
+        android:textStyle="bold"
+        android:textColor="@color/background_material_light"
+        android:textSize="38dp"
+        android:text="SMITH"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:checked="false"
+        android:clickable="true" />
+
+</RelativeLayout>

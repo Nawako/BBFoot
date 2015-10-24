@@ -6,6 +6,7 @@
 
     <TextView android:text="Choisir les joueurs de l'équipe rouge  :"
         android:textSize="48dp"
+        android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -17,6 +18,7 @@
     <ListView
         android:layout_marginTop="10dp"
         android:id="@+id/activity_player_chooser_lv"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="300dp">
     </ListView>
@@ -24,6 +26,7 @@
     <com.dd.morphingbutton.MorphingButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="coucou"
         android:id="@+id/activity_chooser_btn_valider"/>
 
