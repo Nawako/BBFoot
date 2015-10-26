@@ -2,6 +2,7 @@ package com.kilomobi.bbfoot;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,9 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    int scoreRed = 0;
+    int scoreBlue = 0;
+    TextView tvScoreRed;
+    TextView tvScoreBleu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +28,49 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        tvScoreBleu = (TextView)findViewById(R.id.activity_main_tv_score_blue);
+        tvScoreRed = (TextView)findViewById(R.id.activity_main_tv_score_red);
+
+        FloatingActionButton addRed;
+        addRed = (FloatingActionButton) findViewById(R.id.activity_main_red_add);
+        addRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scoreRed++;
+                tvScoreRed.setText(scoreRed);
+            }
+        });
+
+        FloatingActionButton minusRed;
+        minusRed = (FloatingActionButton) findViewById(R.id.activity_main_red_remove);
+        minusRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scoreRed--;
+                tvScoreRed.setText(scoreRed);
+            }
+        });
+
+        FloatingActionButton addBlue;
+        addBlue = (FloatingActionButton) findViewById(R.id.activity_main_bleu_add);
+        addBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scoreBlue++;
+                tvScoreBleu.setText(scoreBlue);
+            }
+        });
+
+        FloatingActionButton minusBlue;
+        minusBlue = (FloatingActionButton) findViewById(R.id.activity_main_bleu_remove);
+        minusBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scoreBlue--;
+                tvScoreBleu.setText(scoreBlue);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -83,20 +134,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_newmatch) {
+            // TODO créer un nouveau match, choisir joueurs
+        } else if (id == R.id.nav_player) {
+            // TODO faire les stats des joueurs
             Intent intent = new Intent();
             intent.setClass(this, PlayerActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_fun) {
+            // TODO faire les funny stufs comme le son
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

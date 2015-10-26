@@ -202,7 +202,7 @@
             <TextView android:text="6"
                 android:textSize="200dp"
                 android:textColor="@android:color/white"
-                android:id="@+id/activity_main_tv_score_bleu"
+                android:id="@+id/activity_main_tv_score_red"
                 android:layout_marginTop="25dp"
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
@@ -218,6 +218,7 @@
 
             <TextView android:text="9"
                 android:textSize="200dp"
+                android:id="@+id/activity_main_tv_score_blue"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="25dp"
                 android:layout_gravity="right"
