@@ -24,13 +24,13 @@ import java.util.List;
 // Async qui permet d'ajouter un joueur à la BDD
 // ===========================================================
 
-public class PlayerPostAsync extends AsyncTask<String, Void, String> {
+public class PlayerAddAsync extends AsyncTask<String, Void, String> {
 
     ProgressDialog dialog;
     Activity mActivity;
     Context mContext;
 
-    public PlayerPostAsync(Activity activity, Context context) {
+    public PlayerAddAsync(Activity activity, Context context) {
         mActivity = activity;
         mContext = context;
         dialog = new ProgressDialog(activity);
