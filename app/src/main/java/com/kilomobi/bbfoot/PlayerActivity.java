@@ -52,22 +52,16 @@ public class PlayerActivity extends AppCompatActivity {
         Player p = new Player();
         p.setPrenom("Pierre");
         p.setNom("P");
-        p.setAttaque(5);
-        p.setDefense(5);
         playerList.add(p);
 
         Player p1 = new Player();
         p1.setPrenom("André");
         p1.setNom("W");
-        p1.setAttaque(5);
-        p1.setDefense(5);
         playerList.add(p1);
 
         Player p2 = new Player();
         p2.setPrenom("Yannick");
         p2.setNom("K");
-        p2.setAttaque(3);
-        p2.setDefense(4);
         playerList.add(p2);
 
         listAdapter = new PlayerController(getApplicationContext(), playerList);

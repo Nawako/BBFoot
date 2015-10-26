@@ -14,13 +14,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, View.OnLongClickListener {
+
+    int scoreRed1 = 0;
+    int scoreRed2 = 0;
     int scoreRed = 0;
+    int scoreBlue1 = 0;
+    int scoreBlue2 = 0;
     int scoreBlue = 0;
     TextView tvScoreRed;
-    TextView tvScoreBleu;
+    TextView tvScoreBlue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,48 +36,31 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tvScoreBleu = (TextView)findViewById(R.id.activity_main_tv_score_blue);
+        tvScoreBlue = (TextView)findViewById(R.id.activity_main_tv_score_blue);
         tvScoreRed = (TextView)findViewById(R.id.activity_main_tv_score_red);
 
-        FloatingActionButton addRed;
-        addRed = (FloatingActionButton) findViewById(R.id.activity_main_red_add);
-        addRed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreRed++;
-                tvScoreRed.setText(scoreRed);
-            }
-        });
+        // ===========================================================
+        // Gestion des clicks sur les boutons
+        // ===========================================================
+        CircleImageView add_player_red1;
+        add_player_red1 = (CircleImageView) findViewById(R.id.activity_main_ci_red_profile1);
+        add_player_red1.setOnClickListener(this);
+        add_player_red1.setOnLongClickListener(this);
 
-        FloatingActionButton minusRed;
-        minusRed = (FloatingActionButton) findViewById(R.id.activity_main_red_remove);
-        minusRed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreRed--;
-                tvScoreRed.setText(scoreRed);
-            }
-        });
+        CircleImageView add_player_red2;
+        add_player_red2 = (CircleImageView) findViewById(R.id.activity_main_ci_red_profile2);
+        add_player_red2.setOnClickListener(this);
+        add_player_red2.setOnLongClickListener(this);
 
-        FloatingActionButton addBlue;
-        addBlue = (FloatingActionButton) findViewById(R.id.activity_main_bleu_add);
-        addBlue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreBlue++;
-                tvScoreBleu.setText(scoreBlue);
-            }
-        });
+        CircleImageView add_player_blue1;
+        add_player_blue1 = (CircleImageView) findViewById(R.id.activity_main_ci_blue_profile1);
+        add_player_blue1.setOnClickListener(this);
+        add_player_blue1.setOnLongClickListener(this);
 
-        FloatingActionButton minusBlue;
-        minusBlue = (FloatingActionButton) findViewById(R.id.activity_main_bleu_remove);
-        minusBlue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreBlue--;
-                tvScoreBleu.setText(scoreBlue);
-            }
-        });
+        CircleImageView add_player_blue2;
+        add_player_blue2 = (CircleImageView) findViewById(R.id.activity_main_ci_blue_profile2);
+        add_player_blue2.setOnClickListener(this);
+        add_player_blue2.setOnLongClickListener(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,6 +84,67 @@ public class MainActivity extends AppCompatActivity
 
 //        PlayerModifyAsync asyncModify = new PlayerModifyAsync(this, this);
 //        asyncModify.execute("6", "Fabrisse", "Modification");
+    }
+
+    // ===========================================================
+    // Gestion du click sur le joueur, incrémente le score total
+    // et individuel
+    // ===========================================================
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.activity_main_ci_red_profile1:
+                scoreRed++;
+                scoreRed1++;
+                tvScoreRed.setText(String.valueOf(scoreRed));
+                break;
+            case R.id.activity_main_ci_red_profile2:
+                scoreRed++;
+                scoreRed2++;
+                tvScoreRed.setText(String.valueOf(scoreRed));
+                break;
+            case R.id.activity_main_ci_blue_profile1:
+                scoreBlue++;
+                scoreBlue1++;
+                tvScoreBlue.setText(String.valueOf(scoreBlue));
+                break;
+            case R.id.activity_main_ci_blue_profile2:
+                scoreBlue++;
+                scoreBlue2++;
+                tvScoreBlue.setText(String.valueOf(scoreBlue));
+                break;
+        }
+    }
+
+    // ===========================================================
+    // Gestion du long click sur le joueur, décrémente le score total
+    // et individuel
+    // ===========================================================
+    @Override
+    public boolean onLongClick(View view) {
+        switch (view.getId()) {
+            case R.id.activity_main_ci_red_profile1:
+                scoreRed--;
+                scoreRed1--;
+                tvScoreRed.setText(String.valueOf(scoreRed));
+                break;
+            case R.id.activity_main_ci_red_profile2:
+                scoreRed--;
+                scoreRed2--;
+                tvScoreRed.setText(String.valueOf(scoreRed));
+                break;
+            case R.id.activity_main_ci_blue_profile1:
+                scoreBlue--;
+                scoreBlue1--;
+                tvScoreBlue.setText(String.valueOf(scoreBlue));
+                break;
+            case R.id.activity_main_ci_blue_profile2:
+                scoreBlue--;
+                scoreBlue2--;
+                tvScoreBlue.setText(String.valueOf(scoreBlue));
+                break;
+        }
+        return true;
     }
 
     @Override

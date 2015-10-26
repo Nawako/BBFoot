@@ -8,8 +8,7 @@ public class Player {
     private int _id;
     private String nom;
     private String prenom;
-    private int attaque;
-    private int defense;
+    private byte[] image;
 
     public int get_id() {
         return _id;
@@ -35,19 +34,11 @@ public class Player {
         this.prenom = prenom;
     }
 
-    public int getAttaque() {
-        return attaque;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setAttaque(int attaque) {
-        this.attaque = attaque;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
