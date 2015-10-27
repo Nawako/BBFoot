@@ -2,8 +2,13 @@ package com.kilomobi.bbfoot.Global;
 
 import android.content.ContentValues;
 import android.graphics.Bitmap;
+import android.os.Environment;
+import android.util.Log;
+
+import com.kilomobi.bbfoot.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.nio.ByteBuffer;
 import java.sql.Blob;
 

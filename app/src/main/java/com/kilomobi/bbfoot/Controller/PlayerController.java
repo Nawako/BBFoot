@@ -8,10 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.kilomobi.bbfoot.CustomAlbum;
 import com.kilomobi.bbfoot.Model.Player;
 import com.kilomobi.bbfoot.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -24,9 +26,11 @@ public class PlayerController extends ArrayAdapter<Player> {
     // Get the last row item to change color
     private RelativeLayout lastRelativeLayout;
     private TextView lastTextView;
+    private CustomAlbum mAlbumStorageDirFactory = null;
 
     public PlayerController(Context context, ArrayList<Player> players) {
         super(context, 0, players);
+        mAlbumStorageDirFactory = new CustomAlbum();
     }
 
     @Override
@@ -60,9 +64,13 @@ public class PlayerController extends ArrayAdapter<Player> {
             tvPrenom.setTextColor(getContext().getResources().getColor(R.color.background_material_light));
         }
 
+        String pathimg = mAlbumStorageDirFactory.getAlbumStorageDir("BBFoot") + "/" + player.getImage();
+
         Picasso.with(getContext())
-                .load(player.getImage())
-                .placeholder(R.drawable.default_avatar)
+                .load(new File(pathimg))
+                        .placeholder(R.drawable.default_avatar)
+                .resize(200, 200)
+                .centerCrop()
                 .into(ciImage);
 
         tvName.setText(player.getNom());

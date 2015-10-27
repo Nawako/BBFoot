@@ -90,8 +90,10 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
     private File createImageFile() throws IOException {
         long time = System.currentTimeMillis();
         imageFileName = JPEG_FILE_PREFIX + Long.toString(time) + "";
-        File albumF = getAlbumDir();
+        File albumF = mAlbumStorageDirFactory.getAlbumDir();
         File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+        String path = imageF.getPath();
+        imageFileName = path.substring(path.lastIndexOf("/") + 1);
         return imageF;
     }
 
@@ -184,33 +186,5 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
 
 		// Associe le CircleImageView au bitmap
         ciImage.setImageBitmap(bitmap);
-    }
-
-    // Album photo spécifique à l'application
-    private String getAlbumName() {
-        return "BBFoot";
-    }
-
-    // Récupère le répertoire où se loge les images
-    private File getAlbumDir() {
-        File storageDir = null;
-
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-
-            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
-
-            if (storageDir != null) {
-                if (! storageDir.mkdirs()) {
-                    if (! storageDir.exists()){
-                        Log.d("getAlbumDir", "Echec création répertoire");
-                        return null;
-                    }
-                }
-            }
-
-        } else {
-            Log.v(getString(R.string.app_name), "Stockage externe n'est pas en WRITE/READ");
-        }
-        return storageDir;
     }
 }

@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Nawako on 22/10/2015.
@@ -54,9 +55,12 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
-        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
-        asyncGet.execute();
-        String response = asyncGet.getResponse();
+        String response = "";
+        try {
+            PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
+            asyncGet.execute().get();
+            response = asyncGet.getResponse();
+        }catch (Exception e) {e.printStackTrace();}
 
         /**************** Create Player Adapter *********/
         ArrayList<Player> playerList = new ArrayList<>();
@@ -88,7 +92,7 @@ public class PlayerActivity extends AppCompatActivity {
         } catch (JSONException o) {o.printStackTrace();}
 
         listAdapter = new PlayerController(getApplicationContext(), playerList);
-        lv_Player.setAdapter( listAdapter );
+        lv_Player.setAdapter(listAdapter);
     }
 
 }
