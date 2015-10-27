@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.kilomobi.bbfoot.Model.Player;
 import com.kilomobi.bbfoot.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class PlayerController extends ArrayAdapter<Player> {
@@ -39,9 +42,10 @@ public class PlayerController extends ArrayAdapter<Player> {
         // Get the relativeLayout to change his bakcground color when clicked
         final RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.activity_player_chooser_row_rl);
         // Populate the data into the template view using the data object
-        TextView tvName = (TextView) view.findViewById(R.id.activity_player_chooser_row_player_name);
+        TextView tvName = (TextView) view.findViewById(R.id.activity_player_chooser_row_tv_player_name);
+        CircleImageView ciImage = (CircleImageView) view.findViewById(R.id.activity_player_chooser_row_ci_image);
         //	TextView tvEmail = (TextView) view.findViewById(R.id.player_email);
-        final TextView tvPrenom = (TextView) view.findViewById(R.id.activity_player_chooser_row_player_firstname);
+        final TextView tvPrenom = (TextView) view.findViewById(R.id.activity_player_chooser_row_tv_player_firstname);
 
         if (position != mFavoriteID) {
             // change color of latest row
@@ -55,6 +59,11 @@ public class PlayerController extends ArrayAdapter<Player> {
             relativeLayout.setBackgroundResource(R.color.colorAccent);
             tvPrenom.setTextColor(getContext().getResources().getColor(R.color.background_material_light));
         }
+
+        Picasso.with(getContext())
+                .load(player.getImage())
+                .placeholder(R.drawable.default_avatar)
+                .into(ciImage);
 
         tvName.setText(player.getNom());
         tvPrenom.setText(player.getPrenom());

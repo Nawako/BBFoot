@@ -97,6 +97,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="okhttp-urlconnection-2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
     <orderEntry type="library" exported="" name="smash-0.1.0" level="project" />
     <orderEntry type="library" exported="" name="android-morphing-button-e271da6" level="project" />
     <orderEntry type="library" exported="" name="okhttp-2.4.0" level="project" />

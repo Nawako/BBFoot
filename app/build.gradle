@@ -40,4 +40,8 @@ dependencies {
     // Smash // Connectivity
     // ======================================================
     compile 'pl.appformation:smash:0.1.0'
+    // ======================================================
+    // Picasso
+    // ======================================================
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

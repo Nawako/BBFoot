@@ -25,6 +25,11 @@ public class PlayerGetAsync extends AsyncTask<String, Void, String> {
     ProgressDialog dialog;
     Activity mActivity;
     Context mContext;
+    String response;
+
+    public String getResponse() {
+        return response;
+    }
 
     public PlayerGetAsync(Activity activity, Context context) {
         mActivity = activity;
@@ -46,7 +51,7 @@ public class PlayerGetAsync extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         System.setProperty("http.keepAlive", "false");
-        String response = "";
+        response = "";
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
@@ -54,23 +59,7 @@ public class PlayerGetAsync extends AsyncTask<String, Void, String> {
 
             // Envoi de la requête GET
             HttpResponse httpResponse = httpClient.execute(request);
-
-            // TODO enlever le traitement JSON de la méthode et le traiter dans une classe à part
-            // Récupère le JSON
-            JSONObject myObject = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
-
-            JSONArray m_jArry = myObject.getJSONArray("Players");
-            int j_totalSize = m_jArry.length();
-            for (int i = 0; i<j_totalSize; i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-
-                // Récupère les params
-                int jo_id = jo_inside.getInt("PlayerId");
-                String jo_nom = jo_inside.getString("Nom");
-                String jo_prenom = jo_inside.getString("Prenom");
-
-                Log.v("Get : ", jo_nom + " " + jo_prenom);
-            }
+            response = EntityUtils.toString(httpResponse.getEntity());
 
             Log.v("Get : ", response);
 

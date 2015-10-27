@@ -2,13 +2,21 @@ package com.kilomobi.bbfoot;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.dd.morphingbutton.MorphingButton;
+import com.kilomobi.bbfoot.Async.PlayerGetAsync;
 import com.kilomobi.bbfoot.Controller.PlayerController;
 import com.kilomobi.bbfoot.Model.Player;
+import com.squareup.picasso.Picasso;
+
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,23 +54,38 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
+        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
+        asyncGet.execute();
+        String response = asyncGet.getResponse();
+
         /**************** Create Player Adapter *********/
         ArrayList<Player> playerList = new ArrayList<>();
 
-        Player p = new Player();
-        p.setPrenom("Pierre");
-        p.setNom("P");
-        playerList.add(p);
+        try {
+            // Récupère le JSON
+            JSONObject myObject = new JSONObject(response);
 
-        Player p1 = new Player();
-        p1.setPrenom("André");
-        p1.setNom("W");
-        playerList.add(p1);
+            JSONArray m_jArry = myObject.getJSONArray("Players");
+            int j_totalSize = m_jArry.length();
+            for (int i = 0; i<j_totalSize; i++) {
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
 
-        Player p2 = new Player();
-        p2.setPrenom("Yannick");
-        p2.setNom("K");
-        playerList.add(p2);
+                // Récupère les params
+                int jo_id = jo_inside.getInt("PlayerId");
+                String jo_nom = jo_inside.getString("Nom");
+                String jo_prenom = jo_inside.getString("Prenom");
+                String jo_image = jo_inside.getString("ImageId");
+
+                // Assignation à un joueur
+                Player p = new Player();
+                p.setPrenom(jo_prenom);
+                p.setNom(jo_nom);
+                p.setImage(jo_image);
+                playerList.add(p);
+
+                Log.v("Get : ", jo_nom + " " + jo_prenom + " " + jo_image);
+            }
+        } catch (JSONException o) {o.printStackTrace();}
 
         listAdapter = new PlayerController(getApplicationContext(), playerList);
         lv_Player.setAdapter( listAdapter );

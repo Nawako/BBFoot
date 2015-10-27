@@ -9,7 +9,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/activity_player_chooser_row_image"
+        android:id="@+id/activity_player_chooser_row_ci_image"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_gravity="right"
@@ -22,15 +22,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_toRightOf="@id/activity_player_chooser_row_image"
+        android:layout_toRightOf="@id/activity_player_chooser_row_ci_image"
         android:layout_centerVertical="true">
 
     <TextView
-        android:id="@+id/activity_player_chooser_row_player_name"
+        android:id="@+id/activity_player_chooser_row_tv_player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@id/activity_player_chooser_row_image"
+        android:layout_toRightOf="@id/activity_player_chooser_row_ci_image"
         android:textColor="@color/background_material_light"
         android:textStyle="bold"
         android:textSize="38dp"
@@ -39,12 +39,12 @@
         android:gravity="center_vertical" />
 
     <TextView
-        android:id="@+id/activity_player_chooser_row_player_firstname"
+        android:id="@+id/activity_player_chooser_row_tv_player_firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
-        android:layout_below="@id/activity_player_chooser_row_player_name"
-        android:layout_toRightOf="@id/activity_player_chooser_row_image"
+        android:layout_below="@id/activity_player_chooser_row_tv_player_name"
+        android:layout_toRightOf="@id/activity_player_chooser_row_ci_image"
         android:textStyle="bold"
         android:textColor="@color/background_material_light"
         android:textSize="38dp"

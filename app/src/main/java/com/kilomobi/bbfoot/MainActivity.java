@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.kilomobi.bbfoot.Async.PlayerGetAsync;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
 //        PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
 //        asyncGet.execute();
+//        asyncGet.getResponse();
 
 //        PlayerDeleteAsync asyncDelete = new PlayerDeleteAsync(this, this);
 //        asyncDelete.execute("4");

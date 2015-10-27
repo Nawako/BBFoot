@@ -8,7 +8,7 @@ public class Player {
     private int _id;
     private String nom;
     private String prenom;
-    private byte[] image;
+    private String image;
 
     public int get_id() {
         return _id;
@@ -34,11 +34,11 @@ public class Player {
         this.prenom = prenom;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
