@@ -61,6 +61,7 @@ public class PlayerAddAsync extends AsyncTask<String, Void, String> {
             postParameters.add(new BasicNameValuePair("PlayerId", params[0]));
             postParameters.add(new BasicNameValuePair("Prenom", params[1]));
             postParameters.add(new BasicNameValuePair("Nom", params[2]));
+            postParameters.add(new BasicNameValuePair("ImageId", params[3]));
 
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(postParameters);
             request.setEntity(formEntity);
@@ -80,6 +81,7 @@ public class PlayerAddAsync extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-    dialog.dismiss();
+        dialog.dismiss();
+        mActivity.finish();
     }
 }

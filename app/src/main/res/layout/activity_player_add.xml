@@ -1,19 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <CircleImageView
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="20dp"
+                android:src="@drawable/default_avatar"
                 android:id="@+id/activity_player_add_ci"
                 android:layout_centerHorizontal="true"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/activity_player_add_il_prenom"

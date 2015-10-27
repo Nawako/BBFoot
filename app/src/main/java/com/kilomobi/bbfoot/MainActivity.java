@@ -187,10 +187,13 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_newmatch) {
             // TODO créer un nouveau match, choisir joueurs
+            Intent intent = new Intent();
+            intent.setClass(this, PlayerActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_player) {
             // TODO faire les stats des joueurs
             Intent intent = new Intent();
-            intent.setClass(this, PlayerActivity.class);
+            intent.setClass(this, PlayerAddActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_fun) {
             // TODO faire les funny stufs comme le son
