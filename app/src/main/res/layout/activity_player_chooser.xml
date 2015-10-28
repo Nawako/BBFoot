@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView android:text="Choisir les joueurs de l'équipe rouge  :"
-        android:textSize="48dp"
+        android:textSize="10dp"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
@@ -20,8 +20,10 @@
         android:id="@+id/activity_player_chooser_lv"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="200dp"
+        android:clickable="true"
+        android:choiceMode="multipleChoice"
+        android:listSelector="#666666"/>
 
     <com.dd.morphingbutton.MorphingButton
         android:layout_width="wrap_content"

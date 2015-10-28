@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="#4a4a4a"
     android:padding="8dp"
-    android:clickable="false">
+    android:descendantFocusability="blocksDescendants">
+    <!-- Pour que la row listen par OnItemClickListener descendantFocusability -->
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,7 +60,6 @@
         android:id="@+id/activity_player_chooser_row_cb"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:checked="false"
-        android:clickable="true" />
+        android:checked="false" />
 
 </RelativeLayout>

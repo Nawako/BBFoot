@@ -1,12 +1,14 @@
 package com.kilomobi.bbfoot.Controller;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kilomobi.bbfoot.CustomAlbum;
@@ -36,15 +38,81 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     }
 
     static class ViewHolder {
+        protected RelativeLayout rl;
         protected TextView nom;
         protected TextView prenom;
         protected String imagePath;
         protected CircleImageView image;
         protected CheckBox checkbox;
+        protected boolean isSelected;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+//        ViewHolder viewHolder = null;
+//        if (convertView == null) {
+//            LayoutInflater inflator = context.getLayoutInflater();
+//            convertView = inflator.inflate(R.layout.activity_player_chooser_row, null);
+//            viewHolder = new ViewHolder();
+//            viewHolder.prenom = (TextView) convertView.findViewById(R.id.activity_player_chooser_row_tv_player_firstname);
+//            viewHolder.nom = (TextView) convertView.findViewById(R.id.activity_player_chooser_row_tv_player_name);
+//            viewHolder.image = (CircleImageView) convertView.findViewById(R.id.activity_player_chooser_row_ci_image);
+//
+//
+//            viewHolder.rl = (RelativeLayout) convertView.findViewById(R.id.activity_player_chooser_row_rl);
+//            viewHolder.rl.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    ViewGroup viewGroup = (ViewGroup) view;
+//                    for (int i = 0; i < viewGroup .getChildCount(); i++) {
+//
+//                        View viewChild = viewGroup .getChildAt(i);
+//                        viewChild.setPressed(true);
+//
+//                    }
+//                }
+//            });
+////
+////            viewHolder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+////
+////                @Override
+////                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+////                    int getPosition = (Integer) buttonView.getTag();  // Ici on récupère la position que l'on a mise avec la checkbox utilisant setTag
+////                    list.get(getPosition).setIsSelected(buttonView.isChecked()); // Récupère la valeur du checkbox pour qu'il ne parte pas en cahuète.
+////                }
+////            });
+////
+//
+//            convertView.setTag(viewHolder);
+//            convertView.setTag(R.id.activity_player_chooser_row_rl, viewHolder.rl);
+//            convertView.setTag(R.id.activity_player_chooser_row_tv_player_firstname, viewHolder.prenom);
+//            convertView.setTag(R.id.activity_player_chooser_row_tv_player_name, viewHolder.nom);
+//            convertView.setTag(R.id.activity_player_chooser_row_ci_image, viewHolder.image);
+////            convertView.setTag(R.id.activity_player_chooser_row_cb, viewHolder.checkbox);
+//    }
+//
+//    else
+//        {
+//            viewHolder = (ViewHolder) convertView.getTag();
+//        }
+//        // Important
+//        convertView.setTag(position);
+//
+//        viewHolder.prenom.setText(list.get(position).getPrenom());
+//        viewHolder.nom.setText(list.get(position).getPrenom());
+//
+//        viewHolder.imagePath = mAlbumStorageDirFactory.getAlbumStorageDir("BBFoot") + "/" + list.get(position).getImage();
+//
+//        Picasso.with(getContext())
+//                .load(new File(viewHolder.imagePath))
+//                .placeholder(R.drawable.default_avatar)
+//                .resize(200, 200)
+//                .centerCrop()
+//                .into(viewHolder.image);
+//
+//        return convertView;
+//    }
 
         ViewHolder viewHolder = null;
         if (convertView == null) {
@@ -54,6 +122,19 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
             viewHolder.prenom = (TextView) convertView.findViewById(R.id.activity_player_chooser_row_tv_player_firstname);
             viewHolder.nom = (TextView) convertView.findViewById(R.id.activity_player_chooser_row_tv_player_name);
             viewHolder.image = (CircleImageView) convertView.findViewById(R.id.activity_player_chooser_row_ci_image);
+            viewHolder.rl = (RelativeLayout) convertView.findViewById(R.id.activity_player_chooser_row_rl);
+
+//            final RelativeLayout rl = viewHolder.rl;
+//
+//            viewHolder.rl.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int position = view.getId();
+//                    if (list.get(position).isSelected())
+//                        rl.setBackgroundResource(R.color.colorAccent);
+//                }
+//            });
+
             viewHolder.checkbox = (CheckBox) convertView.findViewById(R.id.activity_player_chooser_row_cb);
             viewHolder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -90,4 +171,5 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
 
         return convertView;
     }
+
 }

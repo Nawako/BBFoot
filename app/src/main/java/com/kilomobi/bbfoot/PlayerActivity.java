@@ -3,8 +3,13 @@ package com.kilomobi.bbfoot;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.dd.morphingbutton.MorphingButton;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
@@ -38,15 +43,18 @@ public class PlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // inside on click event
-                MorphingButton.Params circle = MorphingButton.Params.create()
-                        .duration(500)
-                        .cornerRadius(56) // 56 dp
-                        .width(56) // 56 dp
-                        .height(56) // 56 dp
-                        .color(android.R.color.holo_green_light) // normal state color
-                        .colorPressed(android.R.color.holo_green_dark) // pressed state color
-                        .icon(R.drawable.sample); // icon
-                btnMorph.morph(circle);
+//                MorphingButton.Params circle = MorphingButton.Params.create()
+//                        .duration(500)
+//                        .cornerRadius(56) // 56 dp
+//                        .width(56) // 56 dp
+//                        .height(56) // 56 dp
+//                        .color(android.R.color.holo_green_light) // normal state color
+//                        .colorPressed(android.R.color.holo_green_dark) // pressed state color
+//                        .icon(R.drawable.sample); // icon
+//                btnMorph.morph(circle);
+                int checked = getNames();
+                SparseBooleanArray checked2 = lv_Player.getCheckedItemPositions();
+                Toast.makeText(getApplicationContext(), "Nb : " + Integer.toString(checked), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -88,6 +96,29 @@ public class PlayerActivity extends AppCompatActivity {
 
         listAdapter = new PlayerAdapter(this, playerList);
         lv_Player.setAdapter(listAdapter);
+        lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+        lv_Player.setSelector(R.color.mb_blue);
+        lv_Player.setClickable(true);
+        lv_Player.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.v("ItemClick pos : ", String.valueOf(i));
+                Log.v("ItemClick count : ", String.valueOf(lv_Player.getCheckedItemCount()));
+                SparseBooleanArray spb = lv_Player.getCheckedItemPositions();
+                view.setSelected(true);
+            }
+        });
     }
 
+    int getNames() {
+        int nb = 0;
+        for (int i = 0; i < lv_Player.getCount(); i++) {
+            if (lv_Player.isItemChecked(i)) {
+                // Do whatever you need to in here to get data from
+                // the item at index i in the ListView
+                nb++;
+            }
+        }
+        return nb;
+    }
 }
