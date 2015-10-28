@@ -68,10 +68,10 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
             public void onClick(View view) {
                 if (p.isSelected()) {
                     rl.setBackgroundResource(R.color.colorPrimary);
-                    p.setIsSelected(false);
+                    p.setSelected(false);
                 } else {
                     rl.setBackgroundResource(R.color.colorAccent);
-                    p.setIsSelected(true);
+                    p.setSelected(true);
                 }
             }
         });

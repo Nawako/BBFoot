@@ -47,7 +47,7 @@ public class Player {
         return isSelected;
     }
 
-    public void setIsSelected(boolean isSelected) {
+    public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
 }
