@@ -3,7 +3,7 @@
     android:id="@+id/activity_player_chooser_row_rl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#4a4a4a"
+    android:background="@color/colorPrimary"
     android:padding="8dp"
     android:descendantFocusability="blocksDescendants">
     <!-- Pour que la row listen par OnItemClickListener descendantFocusability -->

@@ -52,9 +52,6 @@ public class PlayerActivity extends AppCompatActivity {
 //                        .colorPressed(android.R.color.holo_green_dark) // pressed state color
 //                        .icon(R.drawable.sample); // icon
 //                btnMorph.morph(circle);
-                int checked = getNames();
-                SparseBooleanArray checked2 = lv_Player.getCheckedItemPositions();
-                Toast.makeText(getApplicationContext(), "Nb : " + Integer.toString(checked), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,23 +99,13 @@ public class PlayerActivity extends AppCompatActivity {
         lv_Player.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+          //      if (view.getDrawingCacheBackgroundColor() == getResources().getColor(R.color.colorPrimary))
+                view.setBackgroundResource(R.color.colorAccent);
                 Log.v("ItemClick pos : ", String.valueOf(i));
                 Log.v("ItemClick count : ", String.valueOf(lv_Player.getCheckedItemCount()));
                 SparseBooleanArray spb = lv_Player.getCheckedItemPositions();
                 view.setSelected(true);
             }
         });
-    }
-
-    int getNames() {
-        int nb = 0;
-        for (int i = 0; i < lv_Player.getCount(); i++) {
-            if (lv_Player.isItemChecked(i)) {
-                // Do whatever you need to in here to get data from
-                // the item at index i in the ListView
-                nb++;
-            }
-        }
-        return nb;
     }
 }
