@@ -54,7 +54,7 @@ public class PlayerModifyAsync extends AsyncTask<String, Void, String> {
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost request = new HttpPost(Globale.webURL+Globale.MODIFY);
+            HttpPost request = new HttpPost(Globale.webURL+Globale.PLAYER+Globale.MODIFY);
 
             //Prepare les params
             List<NameValuePair> postParameters = new ArrayList<NameValuePair>();

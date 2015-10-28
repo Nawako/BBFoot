@@ -54,7 +54,7 @@ public class PlayerDeleteAsync extends AsyncTask<String, Void, String> {
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost request = new HttpPost(Globale.webURL+Globale.DELETE);
+            HttpPost request = new HttpPost(Globale.webURL+Globale.PLAYER+Globale.DELETE);
 
             //Prepare les params
             List<NameValuePair> postParameters = new ArrayList<NameValuePair>();

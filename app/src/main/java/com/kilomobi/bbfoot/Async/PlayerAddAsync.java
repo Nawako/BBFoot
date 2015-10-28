@@ -54,7 +54,7 @@ public class PlayerAddAsync extends AsyncTask<String, Void, String> {
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost request = new HttpPost(Globale.webURL+Globale.CREATE);
+            HttpPost request = new HttpPost(Globale.webURL+Globale.PLAYER+Globale.CREATE);
 
             //Prepare les params
             List<NameValuePair> postParameters = new ArrayList<NameValuePair>();

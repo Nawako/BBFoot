@@ -55,7 +55,7 @@ public class PlayerGetAsync extends AsyncTask<String, Void, String> {
         try {
             //Appel du webservice
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet request = new HttpGet(Globale.webURL+Globale.GET);
+            HttpGet request = new HttpGet(Globale.webURL+Globale.PLAYER);
 
             // Envoi de la requête GET
             HttpResponse httpResponse = httpClient.execute(request);
