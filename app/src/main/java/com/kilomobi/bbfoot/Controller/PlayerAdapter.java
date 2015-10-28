@@ -1,13 +1,10 @@
 package com.kilomobi.bbfoot.Controller;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -80,7 +77,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         });
 
         viewHolder.prenom.setText(list.get(position).getPrenom());
-        viewHolder.nom.setText(list.get(position).getPrenom());
+        viewHolder.nom.setText(list.get(position).getNom());
 
         viewHolder.imagePath = mAlbumStorageDirFactory.getAlbumStorageDir("BBFoot") + "/" + list.get(position).getImage();
 
@@ -112,5 +109,10 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
+    }
+
+    public int getAllSelected() {
+
+        return 1;
     }
 }

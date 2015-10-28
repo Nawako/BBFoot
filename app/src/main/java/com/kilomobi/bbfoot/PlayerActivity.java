@@ -94,18 +94,6 @@ public class PlayerActivity extends AppCompatActivity {
         listAdapter = new PlayerAdapter(this, playerList);
         lv_Player.setAdapter(listAdapter);
         lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-        lv_Player.setSelector(R.color.mb_blue);
         lv_Player.setClickable(true);
-        lv_Player.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-          //      if (view.getDrawingCacheBackgroundColor() == getResources().getColor(R.color.colorPrimary))
-                view.setBackgroundResource(R.color.colorAccent);
-                Log.v("ItemClick pos : ", String.valueOf(i));
-                Log.v("ItemClick count : ", String.valueOf(lv_Player.getCheckedItemCount()));
-                SparseBooleanArray spb = lv_Player.getCheckedItemPositions();
-                view.setSelected(true);
-            }
-        });
     }
 }
