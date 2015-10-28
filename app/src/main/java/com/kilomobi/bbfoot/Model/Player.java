@@ -1,5 +1,8 @@
 package com.kilomobi.bbfoot.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nawako on 22/10/2015.
  */

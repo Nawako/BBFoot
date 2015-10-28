@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <TextView android:text="Choisir les joueurs de l'équipe rouge  :"
-        android:textSize="10dp"
+    <TextView android:text="Choisir les joueurs de l'équipe bleu  :"
+        android:textSize="30dp"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
@@ -17,19 +17,19 @@
 
     <ListView
         android:layout_marginTop="10dp"
-        android:id="@+id/activity_player_chooser_lv"
+        android:id="@+id/activity_player_chooser_blue_lv"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:clickable="true"
         android:choiceMode="multipleChoice"
-        android:listSelector="#666666"/>
+        android:layout_weight="0.78" />
 
     <com.dd.morphingbutton.MorphingButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="coucou"
-        android:id="@+id/activity_chooser_btn_valider"/>
+        android:text="Valider"
+        android:id="@+id/activity_player_chooser_blue_btn_valider"/>
 
 </LinearLayout>

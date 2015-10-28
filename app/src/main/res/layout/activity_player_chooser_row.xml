@@ -20,7 +20,7 @@
         app:civ_border_color="@android:color/white"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_toRightOf="@id/activity_player_chooser_row_ci_image"
@@ -53,13 +53,5 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_player_chooser_row_cb"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:checked="false" />
 
 </RelativeLayout>

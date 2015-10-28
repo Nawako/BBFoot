@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kilomobi.bbfoot.CustomAlbum;
 import com.kilomobi.bbfoot.Model.Player;
@@ -25,6 +26,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     private final Activity context;
     boolean checkAll_flag = false;
     boolean checkItem_flag = false;
+    int numberOfSelectedPlayer;
     private CustomAlbum mAlbumStorageDirFactory = null;
 
     public PlayerAdapter(Activity context, ArrayList<Player> list) {
@@ -32,6 +34,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         this.context = context;
         this.list = list;
         mAlbumStorageDirFactory = new CustomAlbum();
+        numberOfSelectedPlayer = 0;
     }
 
     static class ViewHolder {
@@ -69,9 +72,18 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
                 if (p.isSelected()) {
                     rl.setBackgroundResource(R.color.colorPrimary);
                     p.setSelected(false);
+                    numberOfSelectedPlayer--;
                 } else {
-                    rl.setBackgroundResource(R.color.colorAccent);
-                    p.setSelected(true);
+                    if (numberOfSelectedPlayer < 2) {
+                        rl.setBackgroundResource(R.color.colorAccent);
+                        p.setSelected(true);
+                        numberOfSelectedPlayer++;
+                    } else {
+                        Toast.makeText(getContext(),
+                                "Vous ne pouvez pas être plus de 2 d'un côté !",
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
                 }
             }
         });
@@ -109,10 +121,5 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
-    }
-
-    public int getAllSelected() {
-
-        return 1;
     }
 }

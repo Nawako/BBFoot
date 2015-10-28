@@ -2,7 +2,6 @@ package com.kilomobi.bbfoot;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import com.kilomobi.bbfoot.Async.PlayerGetAsync;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -191,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_newmatch) {
             // TODO créer un nouveau match, choisir joueurs
             Intent intent = new Intent();
-            intent.setClass(this, PlayerActivity.class);
+            intent.setClass(this, PlayerRedActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_player) {
             // TODO faire les stats des joueurs

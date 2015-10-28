@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <TextView android:text="Choisir les joueurs de l'équipe rouge  :"
+        android:textSize="30dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"/>
+
+    <ListView
+        android:layout_marginTop="10dp"
+        android:id="@+id/activity_player_chooser_red_lv"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:clickable="true"
+        android:choiceMode="multipleChoice"
+        android:layout_weight="0.78" />
+
+    <com.dd.morphingbutton.MorphingButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Valider"
+        android:id="@+id/activity_player_chooser_red_btn_valider"/>
+
+</LinearLayout>

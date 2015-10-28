@@ -1,15 +1,12 @@
 package com.kilomobi.bbfoot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.SparseArray;
-import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.dd.morphingbutton.MorphingButton;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
@@ -25,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by Nawako on 22/10/2015.
  */
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerRedActivity extends AppCompatActivity {
 
     private ListView lv_Player;
     private PlayerAdapter listAdapter ;
@@ -33,25 +30,18 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_chooser);
+        setContentView(R.layout.activity_player_chooser_red);
 
-        lv_Player = (ListView) findViewById(R.id.activity_player_chooser_lv);
+        lv_Player = (ListView) findViewById(R.id.activity_player_chooser_red_lv);
         // sample demonstrate how to morph button to green circle with icon
-        final MorphingButton btnMorph = (MorphingButton) findViewById(R.id.activity_chooser_btn_valider);
+        final MorphingButton btnMorph = (MorphingButton) findViewById(R.id.activity_player_chooser_red_btn_valider);
 
         btnMorph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // inside on click event
-//                MorphingButton.Params circle = MorphingButton.Params.create()
-//                        .duration(500)
-//                        .cornerRadius(56) // 56 dp
-//                        .width(56) // 56 dp
-//                        .height(56) // 56 dp
-//                        .color(android.R.color.holo_green_light) // normal state color
-//                        .colorPressed(android.R.color.holo_green_dark) // pressed state color
-//                        .icon(R.drawable.sample); // icon
-//                btnMorph.morph(circle);
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), PlayerBlueActivity.class);
+                startActivity(intent);
             }
         });
 
