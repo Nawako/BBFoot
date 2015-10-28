@@ -19,7 +19,6 @@ import org.json.JSONObject;
 // ===========================================================
 // Async qui récupère la liste des joueurs de la BDD
 // ===========================================================
-
 public class PlayerGetAsync extends AsyncTask<String, Void, String> {
 
     ProgressDialog dialog;

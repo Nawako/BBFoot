@@ -23,7 +23,6 @@ import java.util.List;
 // ===========================================================
 // Async qui permet de modifier un joueur à la BDD
 // ===========================================================
-
 public class PlayerModifyAsync extends AsyncTask<String, Void, String> {
 
     ProgressDialog dialog;

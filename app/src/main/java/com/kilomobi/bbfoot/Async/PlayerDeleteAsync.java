@@ -23,7 +23,6 @@ import java.util.List;
 // ===========================================================
 // Async qui permet de supprimer un joueur de la BDD
 // ===========================================================
-
 public class PlayerDeleteAsync extends AsyncTask<String, Void, String> {
 
     ProgressDialog dialog;
