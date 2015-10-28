@@ -9,6 +9,7 @@ public class Player {
     private String nom;
     private String prenom;
     private String image;
+    private boolean isSelected;
 
     public int get_id() {
         return _id;
@@ -40,5 +41,13 @@ public class Player {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
     }
 }

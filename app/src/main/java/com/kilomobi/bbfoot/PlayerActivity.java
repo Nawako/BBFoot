@@ -4,23 +4,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.dd.morphingbutton.MorphingButton;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
-import com.kilomobi.bbfoot.Controller.PlayerController;
+import com.kilomobi.bbfoot.Controller.PlayerAdapter;
 import com.kilomobi.bbfoot.Model.Player;
-import com.squareup.picasso.Picasso;
 
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Nawako on 22/10/2015.
@@ -28,7 +23,7 @@ import java.util.concurrent.ExecutionException;
 public class PlayerActivity extends AppCompatActivity {
 
     private ListView lv_Player;
-    private PlayerController listAdapter ;
+    private PlayerAdapter listAdapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +86,7 @@ public class PlayerActivity extends AppCompatActivity {
             }
         } catch (JSONException o) {o.printStackTrace();}
 
-        listAdapter = new PlayerController(getApplicationContext(), playerList);
+        listAdapter = new PlayerAdapter(this, playerList);
         lv_Player.setAdapter(listAdapter);
     }
 
