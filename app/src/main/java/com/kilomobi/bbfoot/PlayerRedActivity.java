@@ -60,13 +60,9 @@ public class PlayerRedActivity extends PlayerActivity implements OnTaskCompleted
     @Override
     public void bindDataSet() {
         Log.v("Access from : ", "child");
-        lv_Player.setAdapter(getListAdapter());
+        lv_Player.setAdapter(Singleton.getInstance().getListAdapter());
         lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         lv_Player.setClickable(true);
-    }
-
-    @Override
-    public PlayerAdapter getListAdapter() {
-        return super.getListAdapter();
+        Singleton.getInstance().setListAdapter(listAdapter);
     }
 }

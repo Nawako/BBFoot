@@ -31,30 +31,31 @@ public class PlayerBlueActivity extends PlayerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_chooser_blue);
+        if (Singleton.getInstance().getListAdapter() != null) {
+            setContentView(R.layout.activity_player_chooser_blue);
 
-        lv_Player = (ListView) findViewById(R.id.activity_player_chooser_blue_lv);
-        // sample demonstrate how to morph button to green circle with icon
-        final MorphingButton btnMorph = (MorphingButton) findViewById(R.id.activity_player_chooser_blue_btn_valider);
+            lv_Player = (ListView) findViewById(R.id.activity_player_chooser_blue_lv);
+            // sample demonstrate how to morph button to green circle with icon
+            final MorphingButton btnMorph = (MorphingButton) findViewById(R.id.activity_player_chooser_blue_btn_valider);
 
-        btnMorph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            btnMorph.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            }
-        });
+                }
+            });
 
-    }
+            lv_Player.setAdapter(Singleton.getInstance().getListAdapter());
+            lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+            lv_Player.setClickable(true);
 
-    @Override
-    public PlayerAdapter getListAdapter() {
-        return super.getListAdapter();
+        }
     }
 
     @Override
     public void bindDataSet() {
         Log.v("Access from : ", "child");
-        lv_Player.setAdapter(getListAdapter());
+        lv_Player.setAdapter(Singleton.getInstance().getListAdapter());
         lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         lv_Player.setClickable(true);
     }

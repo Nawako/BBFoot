@@ -27,20 +27,16 @@ public class PlayerActivity extends Activity implements OnTaskCompletedInterface
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (listAdapter == null) {
-            super.onCreate(savedInstanceState);
-            listener = this;
+        super.onCreate(savedInstanceState);
+        listener = this;
+        if (Singleton.getInstance().getListAdapter() == null) {
             try {
-                PlayerGetAsync asyncGet = new PlayerGetAsync(this, this, this);
+                PlayerGetAsync asyncGet = new PlayerGetAsync(this, this);
                 asyncGet.execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public PlayerAdapter getListAdapter() {
-        return listAdapter;
     }
 
     @Override

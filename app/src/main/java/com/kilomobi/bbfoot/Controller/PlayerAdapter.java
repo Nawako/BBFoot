@@ -138,10 +138,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     }
 
     public boolean isIdPlayerAlreadySelected(int playerId) {
-        if (list.get(playerId).isSelected())
-            return true;
-        else
-            return false;
+        return list.get(playerId).isSelected();
     }
 
     public void setSelectionAtFalse() {

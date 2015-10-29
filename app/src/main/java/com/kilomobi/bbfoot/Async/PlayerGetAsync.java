@@ -7,12 +7,15 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.kilomobi.bbfoot.Global.Globale;
+import com.kilomobi.bbfoot.Model.Player;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
 
 // ===========================================================
 // Async qui récupère la liste des joueurs de la BDD
@@ -29,16 +32,15 @@ public class PlayerGetAsync extends AsyncTask<String, Void, String> {
         return response;
     }
 
-    public PlayerGetAsync(Activity activity, Context context, OnTaskCompletedInterface listener) {
-        this.listener = listener;
-    //    mActivity = activity;
-        mContext = activity;
+    public PlayerGetAsync(Activity activity, OnTaskCompletedInterface delegate) {
+        listener = delegate;
+        mActivity = activity;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog = new ProgressDialog(mContext);
+        dialog = new ProgressDialog(mActivity);
         String str = "Connexion en cours";
         dialog.setTitle(str + "...");
         dialog.setIndeterminate(false);
