@@ -47,7 +47,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final Player p = getItem(position);
         ViewHolder viewHolder = null;
         if (convertView == null) {
@@ -75,13 +75,13 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
                     p.setSelected(false);
                     numberOfSelectedPlayer--;
                 } else {
-                    if (numberOfSelectedPlayer < 2) {
+                    if (numberOfSelectedPlayer < 2 && !isIdPlayerAlreadySelected(position)) {
                         rl.setBackgroundResource(R.color.colorAccent);
                         p.setSelected(true);
                         numberOfSelectedPlayer++;
                     } else {
                         Toast.makeText(getContext(),
-                                "Vous ne pouvez pas être plus de 2 d'un côté !",
+                                "Vous ne pouvez pas être plus de 2 d'un côté // Sélectionner un joueur déjà sélectionner !",
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }

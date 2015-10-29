@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by Nawako on 22/10/2015.
  */
-public class PlayerBlueActivity extends AppCompatActivity {
+public class PlayerBlueActivity extends PlayerActivity {
 
     private ListView lv_Player;
     private PlayerAdapter listAdapter ;
@@ -40,60 +40,21 @@ public class PlayerBlueActivity extends AppCompatActivity {
         btnMorph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Integer> getListOfBlue = listAdapter.getListOfSelectedPlayers();
-                Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
-                // inside on click event
-//                MorphingButton.Params circle = MorphingButton.Params.create()
-//                        .duration(500)
-//                        .cornerRadius(56) // 56 dp
-//                        .width(56) // 56 dp
-//                        .height(56) // 56 dp
-//                        .color(android.R.color.holo_green_light) // normal state color
-//                        .colorPressed(android.R.color.holo_green_dark) // pressed state color
-//                        .icon(R.drawable.sample); // icon
-//                btnMorph.morph(circle);
+
             }
         });
 
-        String response = "";
-        try {
-            PlayerGetAsync asyncGet = new PlayerGetAsync(this,this);
-            asyncGet.execute().get();
-            response = asyncGet.getResponse();
-        }catch (Exception e) {e.printStackTrace();}
+    }
 
-        /**************** Create Player Adapter *********/
-        ArrayList<Player> playerList = new ArrayList<>();
+    @Override
+    public PlayerAdapter getListAdapter() {
+        return super.getListAdapter();
+    }
 
-        try {
-            // Récupère le JSON
-            JSONObject myObject = new JSONObject(response);
-
-            JSONArray m_jArry = myObject.getJSONArray("Players");
-            int j_totalSize = m_jArry.length();
-            for (int i = 0; i<j_totalSize; i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-
-                // Récupère les params
-                int jo_id = jo_inside.getInt("PlayerId");
-                String jo_nom = jo_inside.getString("Nom");
-                String jo_prenom = jo_inside.getString("Prenom");
-                String jo_image = jo_inside.getString("ImageId");
-
-                // Assignation à un joueur
-                Player p = new Player();
-                p.set_id(jo_id);
-                p.setPrenom(jo_prenom);
-                p.setNom(jo_nom);
-                p.setImage(jo_image);
-                playerList.add(p);
-
-                Log.v("Get : ", jo_nom + " " + jo_prenom + " " + jo_image);
-            }
-        } catch (JSONException o) {o.printStackTrace();}
-
-        listAdapter = new PlayerAdapter(this, playerList);
-        lv_Player.setAdapter(listAdapter);
+    @Override
+    public void bindDataSet() {
+        Log.v("Access from : ", "child");
+        lv_Player.setAdapter(getListAdapter());
         lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         lv_Player.setClickable(true);
     }
