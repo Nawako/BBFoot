@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.dd.morphingbutton.MorphingButton;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
@@ -17,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nawako on 22/10/2015.
@@ -38,6 +40,8 @@ public class PlayerBlueActivity extends AppCompatActivity {
         btnMorph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Integer> getListOfBlue = listAdapter.getListOfSelectedPlayers();
+                Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
                 // inside on click event
 //                MorphingButton.Params circle = MorphingButton.Params.create()
 //                        .duration(500)
@@ -78,6 +82,7 @@ public class PlayerBlueActivity extends AppCompatActivity {
 
                 // Assignation à un joueur
                 Player p = new Player();
+                p.set_id(jo_id);
                 p.setPrenom(jo_prenom);
                 p.setNom(jo_nom);
                 p.setImage(jo_image);

@@ -39,6 +39,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
 
     static class ViewHolder {
         protected RelativeLayout rl;
+        protected int id;
         protected TextView nom;
         protected TextView prenom;
         protected String imagePath;
@@ -121,5 +122,31 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
+    }
+
+    public List<Player> getList() {
+        return list;
+    }
+
+    public List<Integer> getListOfSelectedPlayers() {
+        List<Integer> listIds = new ArrayList<>();
+        for (int i = 0; i< list.size(); i++) {
+            if (list.get(i).isSelected())
+                listIds.add(list.get(i).get_id());
+        }
+        return listIds;
+    }
+
+    public boolean isIdPlayerAlreadySelected(int playerId) {
+        if (list.get(playerId).isSelected())
+            return true;
+        else
+            return false;
+    }
+
+    public void setSelectionAtFalse() {
+        for (int i = 0; i< list.size(); i++) {
+            list.get(i).setSelected(false);
+        }
     }
 }

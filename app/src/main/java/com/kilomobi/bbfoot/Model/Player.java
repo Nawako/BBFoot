@@ -1,12 +1,11 @@
 package com.kilomobi.bbfoot.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Created by Nawako on 22/10/2015.
  */
-public class Player {
+public class Player implements Serializable {
 
     private int _id;
     private String nom;

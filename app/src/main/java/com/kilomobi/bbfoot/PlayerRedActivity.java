@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nawako on 22/10/2015.
@@ -39,11 +40,15 @@ public class PlayerRedActivity extends AppCompatActivity {
         btnMorph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Integer> getListOfRed = listAdapter.getListOfSelectedPlayers();
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), PlayerBlueActivity.class);
                 startActivity(intent);
             }
         });
+
+        // to retrieve object in second Activity
+        getIntent().getSerializableExtra("MyClass");
 
         String response = "";
         try {
@@ -72,6 +77,7 @@ public class PlayerRedActivity extends AppCompatActivity {
 
                 // Assignation à un joueur
                 Player p = new Player();
+                p.set_id(jo_id);
                 p.setPrenom(jo_prenom);
                 p.setNom(jo_nom);
                 p.setImage(jo_image);
