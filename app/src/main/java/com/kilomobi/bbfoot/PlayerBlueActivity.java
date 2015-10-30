@@ -1,5 +1,6 @@
 package com.kilomobi.bbfoot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,7 +42,14 @@ public class PlayerBlueActivity extends PlayerActivity {
             btnMorph.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Singleton.getInstance().setState(2);
+                    Singleton.getInstance().getListAdapter()
+                            .setListOfBluePlayers(Singleton.getInstance()
+                                    .getListAdapter()
+                                    .getListOfSelectedPlayersAsPlayer());
+                    Intent intent = new Intent();
+                    intent.setClass(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 }
             });
 

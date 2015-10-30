@@ -15,9 +15,13 @@ public class Singleton implements OnTaskCompletedInterface {
 
     private String mString;
     private PlayerAdapter listAdapter;
+    // State 1 = RED
+    // State 2 = Blue
+    private int state;
 
     private Singleton(){
         mString = "Hello";
+        state = 1;
     }
 
     public PlayerAdapter getListAdapter() {
@@ -52,5 +56,13 @@ public class Singleton implements OnTaskCompletedInterface {
     @Override
     public void bindDataSet() {
 
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

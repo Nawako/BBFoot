@@ -45,6 +45,11 @@ public class PlayerRedActivity extends PlayerActivity implements OnTaskCompleted
         btnMorph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Singleton.getInstance().setState(2);
+                Singleton.getInstance().getListAdapter()
+                        .setListOfRedPlayers(Singleton.getInstance()
+                                .getListAdapter()
+                                .getListOfSelectedPlayersAsPlayer());
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), PlayerBlueActivity.class);
                 startActivity(intent);
@@ -60,9 +65,9 @@ public class PlayerRedActivity extends PlayerActivity implements OnTaskCompleted
     @Override
     public void bindDataSet() {
         Log.v("Access from : ", "child");
+        Singleton.getInstance().setListAdapter(listAdapter);
         lv_Player.setAdapter(Singleton.getInstance().getListAdapter());
         lv_Player.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         lv_Player.setClickable(true);
-        Singleton.getInstance().setListAdapter(listAdapter);
     }
 }

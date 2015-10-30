@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.kilomobi.bbfoot.CustomAlbum;
 import com.kilomobi.bbfoot.Model.Player;
 import com.kilomobi.bbfoot.R;
+import com.kilomobi.bbfoot.Singleton;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -23,10 +24,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PlayerAdapter extends ArrayAdapter<Player> {
 
     private final List<Player> list;
+    private List<Player> listOfRedPlayers;
+    private List<Player> listOfBluePlayers;
     private final Activity context;
     boolean checkAll_flag = false;
     boolean checkItem_flag = false;
-    int numberOfSelectedPlayer;
+    int numberOfSelectedRedPlayer;
+    int numberOfSelectedBluePlayer;
     private CustomAlbum mAlbumStorageDirFactory = null;
 
     public PlayerAdapter(Activity context, ArrayList<Player> list) {
@@ -34,7 +38,8 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         this.context = context;
         this.list = list;
         mAlbumStorageDirFactory = new CustomAlbum();
-        numberOfSelectedPlayer = 0;
+        numberOfSelectedRedPlayer = 0;
+        numberOfSelectedBluePlayer = 0;
     }
 
     static class ViewHolder {
@@ -60,34 +65,57 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         viewHolder.image = (CircleImageView) convertView.findViewById(R.id.activity_player_chooser_row_ci_image);
         viewHolder.rl = (RelativeLayout) convertView.findViewById(R.id.activity_player_chooser_row_rl);
 
-        if (p.isSelected())
-            viewHolder.rl.setBackgroundResource(R.color.colorAccent);
-        else
-            viewHolder.rl.setBackgroundResource(R.color.colorPrimary);
-
         final RelativeLayout rl = viewHolder.rl;
 
-        viewHolder.rl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (p.isSelected()) {
-                    rl.setBackgroundResource(R.color.colorPrimary);
-                    p.setSelected(false);
-                    numberOfSelectedPlayer--;
-                } else {
-                    if (numberOfSelectedPlayer < 2 && !isIdPlayerAlreadySelected(position)) {
-                        rl.setBackgroundResource(R.color.colorAccent);
-                        p.setSelected(true);
-                        numberOfSelectedPlayer++;
-                    } else {
-                        Toast.makeText(getContext(),
-                                "Vous ne pouvez pas être plus de 2 d'un côté // Sélectionner un joueur déjà sélectionner !",
-                                Toast.LENGTH_SHORT)
-                                .show();
+                if (p.isSelected())
+                    viewHolder.rl.setBackgroundResource(R.color.mb_gray);
+                else
+                    viewHolder.rl.setBackgroundResource(R.color.colorPrimary);
+
+                viewHolder.rl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        switch (Singleton.getInstance().getState()) {
+                            case 1:
+                                if (p.isSelected()) {
+                                    rl.setBackgroundResource(R.color.colorPrimary);
+                                    p.setSelected(false);
+                                    numberOfSelectedRedPlayer--;
+                                } else {
+                                    if (numberOfSelectedRedPlayer < 2 && !isIdPlayerAlreadySelected(position)) {
+                                        rl.setBackgroundResource(R.color.mb_gray);
+                                        p.setSelected(true);
+                                        numberOfSelectedRedPlayer++;
+                                    } else {
+                                        Toast.makeText(getContext(),
+                                                "Vous ne pouvez pas être plus de 2 d'un côté // Sélectionner un joueur déjà sélectionner !",
+                                                Toast.LENGTH_SHORT)
+                                                .show();
+                                    }
+                                }
+                                break;
+                            case 2:
+                                if (p.isSelected() && !getListOfRedPlayers().contains(p)) {
+                                    rl.setBackgroundResource(R.color.colorAccent);
+                                    p.setSelected(false);
+                                    numberOfSelectedBluePlayer--;
+                                } else {
+                                    if (numberOfSelectedBluePlayer < 2 && !isIdPlayerAlreadySelected(position) && !getListOfRedPlayers().contains(p)) {
+                                        rl.setBackgroundResource(R.color.mb_gray);
+                                        p.setSelected(true);
+                                        numberOfSelectedBluePlayer++;
+                                    } else {
+                                        Toast.makeText(getContext(),
+                                                "Vous ne pouvez pas être plus de 2 d'un côté // Sélectionner un joueur déjà sélectionner !",
+                                                Toast.LENGTH_SHORT)
+                                                .show();
+                                    }
+                                }
+                                break;
+                        }
+
                     }
-                }
-            }
-        });
+                });
 
         viewHolder.prenom.setText(list.get(position).getPrenom());
         viewHolder.nom.setText(list.get(position).getNom());
@@ -137,6 +165,15 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         return listIds;
     }
 
+    public List<Player> getListOfSelectedPlayersAsPlayer() {
+        List<Player> listPlayers = new ArrayList<>();
+        for (int i = 0; i< list.size(); i++) {
+            if (list.get(i).isSelected())
+                listPlayers.add(list.get(i));
+        }
+        return listPlayers;
+    }
+
     public boolean isIdPlayerAlreadySelected(int playerId) {
         return list.get(playerId).isSelected();
     }
@@ -145,5 +182,21 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         for (int i = 0; i< list.size(); i++) {
             list.get(i).setSelected(false);
         }
+    }
+
+    public List<Player> getListOfRedPlayers() {
+        return listOfRedPlayers;
+    }
+
+    public void setListOfRedPlayers(List<Player> listOfRedPlayers) {
+        this.listOfRedPlayers = listOfRedPlayers;
+    }
+
+    public List<Player> getListOfBluePlayers() {
+        return listOfBluePlayers;
+    }
+
+    public void setListOfBluePlayers(List<Player> listOfBluePlayers) {
+        this.listOfBluePlayers = listOfBluePlayers;
     }
 }
