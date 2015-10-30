@@ -38,6 +38,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         this.context = context;
         this.list = list;
         mAlbumStorageDirFactory = new CustomAlbum();
+        Singleton.getInstance().setmImagePath(mAlbumStorageDirFactory.getAlbumStorageDir("BBFoot") + "/");
         numberOfSelectedRedPlayer = 0;
         numberOfSelectedBluePlayer = 0;
     }
@@ -68,9 +69,9 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         final RelativeLayout rl = viewHolder.rl;
 
                 if (p.isSelected())
-                    viewHolder.rl.setBackgroundResource(R.color.mb_gray);
+                    viewHolder.rl.setBackgroundResource(R.color.listAccent);
                 else
-                    viewHolder.rl.setBackgroundResource(R.color.colorPrimary);
+                    viewHolder.rl.setBackgroundResource(R.color.listPrimary);
 
                 viewHolder.rl.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -78,12 +79,12 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
                         switch (Singleton.getInstance().getState()) {
                             case 1:
                                 if (p.isSelected()) {
-                                    rl.setBackgroundResource(R.color.colorPrimary);
+                                    rl.setBackgroundResource(R.color.listPrimary);
                                     p.setSelected(false);
                                     numberOfSelectedRedPlayer--;
                                 } else {
                                     if (numberOfSelectedRedPlayer < 2 && !isIdPlayerAlreadySelected(position)) {
-                                        rl.setBackgroundResource(R.color.mb_gray);
+                                        rl.setBackgroundResource(R.color.listAccent);
                                         p.setSelected(true);
                                         numberOfSelectedRedPlayer++;
                                     } else {
@@ -96,12 +97,12 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
                                 break;
                             case 2:
                                 if (p.isSelected() && !getListOfRedPlayers().contains(p)) {
-                                    rl.setBackgroundResource(R.color.colorAccent);
+                                    rl.setBackgroundResource(R.color.listPrimary);
                                     p.setSelected(false);
                                     numberOfSelectedBluePlayer--;
                                 } else {
                                     if (numberOfSelectedBluePlayer < 2 && !isIdPlayerAlreadySelected(position) && !getListOfRedPlayers().contains(p)) {
-                                        rl.setBackgroundResource(R.color.mb_gray);
+                                        rl.setBackgroundResource(R.color.listAccent);
                                         p.setSelected(true);
                                         numberOfSelectedBluePlayer++;
                                     } else {
@@ -167,9 +168,16 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
 
     public List<Player> getListOfSelectedPlayersAsPlayer() {
         List<Player> listPlayers = new ArrayList<>();
-        for (int i = 0; i< list.size(); i++) {
-            if (list.get(i).isSelected())
-                listPlayers.add(list.get(i));
+        if (getListOfRedPlayers() != null) {
+            for (int i = 0; i< list.size(); i++) {
+                if (list.get(i).isSelected() && !getListOfRedPlayers().contains(list.get(i)))
+                    listPlayers.add(list.get(i));
+            }
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).isSelected())
+                    listPlayers.add(list.get(i));
+            }
         }
         return listPlayers;
     }

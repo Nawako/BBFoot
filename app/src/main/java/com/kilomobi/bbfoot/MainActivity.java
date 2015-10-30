@@ -14,7 +14,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kilomobi.bbfoot.Model.Player;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -30,49 +33,68 @@ public class MainActivity extends AppCompatActivity
     int scoreBlue = 0;
     TextView tvScoreRed;
     TextView tvScoreBlue;
-
+    TextView tvPrenomRed1;
+    TextView tvPrenomRed2;
+    TextView tvPrenomBlue1;
+    TextView tvPrenomBlue2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main_match);
 
-        tvScoreBlue = (TextView)findViewById(R.id.activity_main_tv_score_blue);
-        tvScoreRed = (TextView)findViewById(R.id.activity_main_tv_score_red);
+        tvScoreBlue = (TextView) findViewById(R.id.activity_main_tv_score_blue);
+        tvScoreRed = (TextView) findViewById(R.id.activity_main_tv_score_red);
+        tvPrenomRed1 = (TextView) findViewById(R.id.activity_main_tv_red_joueur1);
+        tvPrenomRed2 = (TextView) findViewById(R.id.activity_main_tv_red_joueur2);
+        tvPrenomBlue1 = (TextView) findViewById(R.id.activity_main_tv_blue_joueur1);
+        tvPrenomBlue2 = (TextView) findViewById(R.id.activity_main_tv_blue_joueur2);
 
         // ===========================================================
         // Gestion des clicks sur les boutons
         // ===========================================================
+        List<CircleImageView> redImages = new ArrayList<>();
+        List<CircleImageView> blueImages = new ArrayList<>();
+        List<TextView> redTexts = new ArrayList<>();
+        List<TextView> blueTexts = new ArrayList<>();
+        redTexts.add(tvPrenomRed1);
+        redTexts.add(tvPrenomRed2);
+        blueTexts.add(tvPrenomBlue1);
+        blueTexts.add(tvPrenomBlue2);
+
         CircleImageView add_player_red1;
         add_player_red1 = (CircleImageView) findViewById(R.id.activity_main_ci_red_profile1);
         add_player_red1.setOnClickListener(this);
         add_player_red1.setOnLongClickListener(this);
+        redImages.add(add_player_red1);
 
         CircleImageView add_player_red2;
         add_player_red2 = (CircleImageView) findViewById(R.id.activity_main_ci_red_profile2);
         add_player_red2.setOnClickListener(this);
         add_player_red2.setOnLongClickListener(this);
+        redImages.add(add_player_red2);
 
         CircleImageView add_player_blue1;
         add_player_blue1 = (CircleImageView) findViewById(R.id.activity_main_ci_blue_profile1);
         add_player_blue1.setOnClickListener(this);
         add_player_blue1.setOnLongClickListener(this);
+        blueImages.add(add_player_blue1);
 
         CircleImageView add_player_blue2;
         add_player_blue2 = (CircleImageView) findViewById(R.id.activity_main_ci_blue_profile2);
         add_player_blue2.setOnClickListener(this);
         add_player_blue2.setOnLongClickListener(this);
+        blueImages.add(add_player_blue2);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        // Gestion du joueur sur la bulle
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        List<Player> redTeam = Singleton.getInstance().getListAdapter().getListOfRedPlayers();
+        List<Player> blueTeam = Singleton.getInstance().getListAdapter().getListOfBluePlayers();
+
+        setImageToCircleImage(redTeam, redImages);
+        setImageToCircleImage(blueTeam, blueImages);
+        setTextToTextview(redTeam, redTexts);
+        setTextToTextview(blueTeam, blueTexts);
 
 //        // Async
 //        PlayerAddAsync asyncAdd = new PlayerAddAsync(this, this);
@@ -149,6 +171,25 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         return true;
+    }
+
+    private void setImageToCircleImage(List<Player> team, List<CircleImageView> teamImage) {
+        String imagePath = Singleton.getInstance().getmImagePath();
+
+        for (int i = 0; i < team.size(); i++) {
+            Picasso.with(getApplicationContext())
+                    .load(new File(imagePath + team.get(i).getImage()))
+                    .placeholder(R.drawable.default_avatar)
+                    .resize(200, 200)
+                    .centerCrop()
+                    .into(teamImage.get(i));
+        }
+    }
+
+    private void setTextToTextview (List<Player> team, List<TextView> teamText) {
+        for (int i = 0; i < team.size(); i++) {
+            teamText.get(i).setText(team.get(i).getPrenom());
+        }
     }
 
     @Override

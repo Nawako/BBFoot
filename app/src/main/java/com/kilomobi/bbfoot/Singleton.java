@@ -1,5 +1,7 @@
 package com.kilomobi.bbfoot;
 
+import android.content.res.AssetFileDescriptor;
+
 import com.kilomobi.bbfoot.Async.OnTaskCompletedInterface;
 import com.kilomobi.bbfoot.Async.PlayerGetAsync;
 import com.kilomobi.bbfoot.Controller.PlayerAdapter;
@@ -14,6 +16,7 @@ public class Singleton implements OnTaskCompletedInterface {
     private static Singleton mInstance = null;
 
     private String mString;
+    private String mImagePath;
     private PlayerAdapter listAdapter;
     // State 1 = RED
     // State 2 = Blue
@@ -22,6 +25,14 @@ public class Singleton implements OnTaskCompletedInterface {
     private Singleton(){
         mString = "Hello";
         state = 1;
+    }
+
+    public String getmImagePath() {
+        return mImagePath;
+    }
+
+    public void setmImagePath(String mImagePath) {
+        this.mImagePath = mImagePath;
     }
 
     public PlayerAdapter getListAdapter() {

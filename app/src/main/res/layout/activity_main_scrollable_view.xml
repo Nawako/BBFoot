@@ -28,7 +28,7 @@
                 android:layout_height="2dp"
                 android:background="@android:color/black"/>
 
-            <TextView android:text="Lorem Ispu"
+            <TextView android:text="Nobody"
                 android:textSize="34dp"
                 android:id="@+id/activity_main_tv_red_joueur1"
                 android:layout_marginTop="25dp"
@@ -42,11 +42,11 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="left"
-                android:src="@drawable/sample"
+                android:src="@drawable/default_avatar"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FF000000"/>
 
-            <TextView android:text="Lorem Ispu"
+            <TextView android:text="Nobody"
                 android:textSize="34dp"
                 android:id="@+id/activity_main_tv_red_joueur2"
                 android:layout_marginTop="25dp"
@@ -60,35 +60,9 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="left"
-                android:src="@drawable/sample"
+                android:src="@drawable/default_avatar"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FF000000"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/activity_main_red_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    app:backgroundTint="@color/colorPrimary"
-                    android:src="@android:drawable/ic_menu_add" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/activity_main_red_remove"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    app:backgroundTint="@color/colorPrimary"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -111,7 +85,7 @@
                 android:layout_height="2dp"
                 android:background="@android:color/white"/>
 
-            <TextView android:text="Lorem Ispu"
+            <TextView android:text="Nobody"
                 android:textSize="34dp"
                 android:textColor="@android:color/white"
                 android:id="@+id/activity_main_tv_blue_joueur1"
@@ -126,11 +100,11 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="right"
-                android:src="@drawable/sample"
+                android:src="@drawable/default_avatar"
                 app:civ_border_width="2dp"
                 app:civ_border_color="@android:color/white"/>
 
-            <TextView android:text="Lorem Ispu"
+            <TextView android:text="Nobody"
                 android:textSize="34dp"
                 android:textColor="@android:color/white"
                 android:id="@+id/activity_main_tv_blue_joueur2"
@@ -145,32 +119,9 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="right"
-                android:src="@drawable/sample"
+                
                 app:civ_border_width="2dp"
                 app:civ_border_color="@android:color/white"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/activity_main_blue_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:src="@android:drawable/ic_menu_add" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/activity_main_blue_remove"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
