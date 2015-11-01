@@ -112,6 +112,5 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
     protected void onPause() {
         super.onPause();
         soundActivity.stop();
-        soundActivity.release();
     }
 }
