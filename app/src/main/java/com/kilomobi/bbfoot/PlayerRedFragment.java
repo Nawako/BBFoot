@@ -1,6 +1,8 @@
 package com.kilomobi.bbfoot;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,9 +47,10 @@ public class PlayerRedFragment extends PlayerFragment implements OnTaskCompleted
                         .setListOfRedPlayers(Singleton.getInstance()
                                 .getListAdapter()
                                 .getListOfSelectedPlayersAsPlayer());
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), PlayerBlueFragment.class);
-                startActivity(intent);
+                Fragment fragment = new PlayerBlueFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.content_frame, fragment).commit();
             }
         });
         return rootView;

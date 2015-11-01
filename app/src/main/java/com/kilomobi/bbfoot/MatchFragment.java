@@ -24,8 +24,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends Fragment
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, View.OnLongClickListener {
+public class MatchFragment extends Fragment implements
+        View.OnClickListener, View.OnLongClickListener {
 
     int scoreRed1 = 0;
     int scoreRed2 = 0;
@@ -196,45 +196,5 @@ public class MainActivity extends Fragment
         for (int i = 0; i < team.size(); i++) {
             teamText.get(i).setText(team.get(i).getPrenom());
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_newmatch) {
-            // TODO créer un nouveau match, choisir joueurs
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), PlayerRedFragment.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_player) {
-            // TODO faire les stats des joueurs
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), PlayerAddFragment.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_fun) {
-            // TODO faire les funny stufs comme le son
-
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

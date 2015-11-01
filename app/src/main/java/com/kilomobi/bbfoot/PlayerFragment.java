@@ -1,9 +1,6 @@
 package com.kilomobi.bbfoot;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.os.Bundle;
 import android.util.Log;
 

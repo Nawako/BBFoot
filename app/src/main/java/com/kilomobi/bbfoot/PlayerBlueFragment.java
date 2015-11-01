@@ -1,5 +1,7 @@
 package com.kilomobi.bbfoot;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,9 +42,10 @@ public class PlayerBlueFragment extends PlayerFragment {
                             .setListOfBluePlayers(Singleton.getInstance()
                                     .getListAdapter()
                                     .getListOfSelectedPlayersAsPlayer());
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(), MainActivity.class);
-                    startActivity(intent);
+                    Fragment fragment = new MatchFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.content_frame, fragment).commit();
                 }
             });
 

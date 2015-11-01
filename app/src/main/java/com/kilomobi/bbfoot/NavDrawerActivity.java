@@ -18,7 +18,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 /**
  * Created by macbookpro on 30/10/2015.
  */
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class NavDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Fragment fragment;
     SoundActivity soundActivity;
@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        fragment = new PlayerAddFragment();
+        fragment = new HomeFragment();
         FragmentManager fragmentManager = getFragmentManager();
         android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.content_frame, fragment).commit();
@@ -55,14 +55,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_newmatch) {
             // TODO créer un nouveau match, choisir joueurs
-            Intent intent = new Intent();
-            intent.setClass(this, PlayerRedFragment.class);
-            startActivity(intent);
+            fragment = new PlayerRedFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.content_frame, fragment).commit();
         } else if (id == R.id.nav_player) {
             // TODO faire les stats des joueurs
-            Intent intent = new Intent();
-            intent.setClass(this, PlayerAddFragment.class);
-            startActivity(intent);
+            fragment = new PlayerAddFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.content_frame, fragment).commit();
         } else if (id == R.id.nav_fun) {
             // TODO faire les funny stufs comme le son
             new MaterialDialog.Builder(this)
