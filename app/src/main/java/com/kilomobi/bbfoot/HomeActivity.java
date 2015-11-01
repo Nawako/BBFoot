@@ -1,19 +1,17 @@
 package com.kilomobi.bbfoot;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -22,6 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
  */
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    Fragment fragment;
     SoundActivity soundActivity;
 
     @Override
@@ -41,6 +40,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fragment = new PlayerAddFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.content_frame, fragment).commit();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -52,12 +56,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_newmatch) {
             // TODO créer un nouveau match, choisir joueurs
             Intent intent = new Intent();
-            intent.setClass(this, PlayerRedActivity.class);
+            intent.setClass(this, PlayerRedFragment.class);
             startActivity(intent);
         } else if (id == R.id.nav_player) {
             // TODO faire les stats des joueurs
             Intent intent = new Intent();
-            intent.setClass(this, PlayerAddActivity.class);
+            intent.setClass(this, PlayerAddFragment.class);
             startActivity(intent);
         } else if (id == R.id.nav_fun) {
             // TODO faire les funny stufs comme le son

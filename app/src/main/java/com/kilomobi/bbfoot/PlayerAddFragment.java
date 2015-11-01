@@ -1,5 +1,6 @@
 package com.kilomobi.bbfoot;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,9 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,7 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by Nawako on 22/10/2015.
  */
-public class PlayerAddActivity extends AppCompatActivity implements View.OnClickListener {
+public class PlayerAddFragment extends Fragment implements View.OnClickListener {
 
     EditText etNom;
     EditText etPrenom;
@@ -36,15 +41,15 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
     private static final String JPEG_FILE_SUFFIX = ".jpg";
     String imageFileName;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_add);
-
-        etNom = (EditText) findViewById(R.id.activity_player_add_et_prenom);
-        etPrenom = (EditText) findViewById(R.id.activity_player_add_et_nom);
-        ciImage = (CircleImageView) findViewById(R.id.activity_player_add_ci);
-        btnValider = (Button) findViewById(R.id.activity_player_add_btn_valider);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_player_add, null);
+        FragmentActivity faActivity  = (FragmentActivity)    super.getActivity();
+        etNom = (EditText) rootView.findViewById(R.id.activity_player_add_et_prenom);
+        etPrenom = (EditText) rootView.findViewById(R.id.activity_player_add_et_nom);
+        ciImage = (CircleImageView) rootView.findViewById(R.id.activity_player_add_ci);
+        btnValider = (Button) rootView.findViewById(R.id.activity_player_add_btn_valider);
 
         etNom.setOnClickListener(this);
         etPrenom.setOnClickListener(this);
@@ -52,6 +57,7 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
         btnValider.setOnClickListener(this);
 
         mAlbumStorageDirFactory = new CustomAlbum();
+        return rootView;
     }
 
     @Override
@@ -73,7 +79,7 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.activity_player_add_ci:
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                if (takePictureIntent.resolveActivity(super.getActivity().getPackageManager()) != null) {
                     dispatchTakePictureIntent(REQUEST_TAKE_PHOTO);
                 }
         }
@@ -81,7 +87,7 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
 
     void validate() {
         // Async
-        PlayerAddAsync asyncAdd = new PlayerAddAsync(this, this);
+        PlayerAddAsync asyncAdd = new PlayerAddAsync(super.getActivity(), super.getActivity());
         // Params pour add un joueur
         asyncAdd.execute("", etNom.getText().toString(), etPrenom.getText().toString(), imageFileName);
     }
@@ -136,12 +142,13 @@ public class PlayerAddActivity extends AppCompatActivity implements View.OnClick
         File f = new File(mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+        super.getActivity().sendBroadcast(mediaScanIntent);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // resultCode = -1 == RESULT_OK
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == -1) {
             handleBigCameraPhoto();
         }
     }

@@ -2,42 +2,35 @@ package com.kilomobi.bbfoot;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.dd.morphingbutton.MorphingButton;
-import com.kilomobi.bbfoot.Async.PlayerGetAsync;
 import com.kilomobi.bbfoot.Controller.PlayerAdapter;
-import com.kilomobi.bbfoot.Model.Player;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Nawako on 22/10/2015.
  */
-public class PlayerBlueActivity extends PlayerActivity {
+public class PlayerBlueFragment extends PlayerFragment {
 
     private ListView lv_Player;
     private PlayerAdapter listAdapter ;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (Singleton.getInstance().getListAdapter() != null) {
-            setContentView(R.layout.activity_player_chooser_blue);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_player_chooser_blue, null);
 
-            lv_Player = (ListView) findViewById(R.id.activity_player_chooser_blue_lv);
+        if (Singleton.getInstance().getListAdapter() != null) {
+
+            lv_Player = (ListView) rootView.findViewById(R.id.activity_player_chooser_blue_lv);
             // sample demonstrate how to morph button to green circle with icon
-            final MorphingButton btnMorph = (MorphingButton) findViewById(R.id.activity_player_chooser_blue_btn_valider);
+            final MorphingButton btnMorph = (MorphingButton) rootView.findViewById(R.id.activity_player_chooser_blue_btn_valider);
 
             btnMorph.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,7 +41,7 @@ public class PlayerBlueActivity extends PlayerActivity {
                                     .getListAdapter()
                                     .getListOfSelectedPlayersAsPlayer());
                     Intent intent = new Intent();
-                    intent.setClass(getApplicationContext(), MainActivity.class);
+                    intent.setClass(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }
             });
@@ -58,6 +51,8 @@ public class PlayerBlueActivity extends PlayerActivity {
             lv_Player.setClickable(true);
 
         }
+
+        return rootView;
     }
 
     @Override

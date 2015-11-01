@@ -1,6 +1,7 @@
 package com.kilomobi.bbfoot;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Bundle;
@@ -20,18 +21,18 @@ import java.util.ArrayList;
 /**
  * Created by Nawako on 22/10/2015.
  */
-public class PlayerActivity extends Activity implements OnTaskCompletedInterface {
+public class PlayerFragment extends Fragment implements OnTaskCompletedInterface {
 
     public PlayerAdapter listAdapter ;
     private OnTaskCompletedInterface listener;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         listener = this;
         if (Singleton.getInstance().getListAdapter() == null) {
             try {
-                PlayerGetAsync asyncGet = new PlayerGetAsync(this, this);
+                PlayerGetAsync asyncGet = new PlayerGetAsync(super.getActivity(), this);
                 asyncGet.execute();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -69,7 +70,7 @@ public class PlayerActivity extends Activity implements OnTaskCompletedInterface
 
                 Log.v("Get : ", jo_nom + " " + jo_prenom + " " + jo_image);
             }
-            listAdapter = new PlayerAdapter(this, playerList);
+            listAdapter = new PlayerAdapter(super.getActivity(), playerList);
         } catch (JSONException o) {o.printStackTrace();}
         listener.bindDataSet();
         return playerList;
