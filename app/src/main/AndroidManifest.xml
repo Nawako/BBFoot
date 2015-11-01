@@ -4,22 +4,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/BBFoot"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MatchFragment"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".PlayerRedFragment"
-            android:screenOrientation="landscape"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
         <activity
             android:name=".NavDrawerActivity"
             android:screenOrientation="landscape"
@@ -29,18 +17,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".PlayerAddFragment"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".PlayerBlueFragment"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
     <uses-feature android:name="android.hardware.camera"

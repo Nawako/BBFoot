@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 /**
@@ -92,7 +93,18 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            new MaterialDialog.Builder(this)
+                    .title("Quitter")
+                    .content("Êtes-vous sûr de vouloir quitter l'application ?")
+                    .positiveText("Oui")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                            finish();
+                        }
+                    })
+                    .negativeText("Non")
+                    .show();
         }
     }
 
