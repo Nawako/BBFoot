@@ -2,6 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home" android:icon="@android:drawable/ic_menu_more"
+            android:title="Accueil" />
         <item android:id="@+id/nav_newmatch" android:icon="@android:drawable/ic_input_get"
             android:title="Nouveau match" />
         <item android:id="@+id/nav_player" android:icon="@android:drawable/ic_menu_add"

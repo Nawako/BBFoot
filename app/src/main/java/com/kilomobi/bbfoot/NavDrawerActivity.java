@@ -60,6 +60,12 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
             FragmentManager fragmentManager = getFragmentManager();
             android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.content_frame, fragment).commit();
+        } else if (id == R.id.nav_home) {
+            // TODO faire les stats des joueurs
+            fragment = new HomeFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.content_frame, fragment).commit();
         } else if (id == R.id.nav_player) {
             // TODO faire les stats des joueurs
             fragment = new PlayerAddFragment();
