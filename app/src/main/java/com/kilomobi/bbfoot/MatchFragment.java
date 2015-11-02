@@ -13,8 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kilomobi.bbfoot.Async.MatchAddAsync;
 import com.kilomobi.bbfoot.Model.Player;
 import com.squareup.picasso.Picasso;
 
@@ -52,6 +54,15 @@ public class MatchFragment extends Fragment implements
         tvPrenomRed2 = (TextView) rootView.findViewById(R.id.activity_main_tv_red_joueur2);
         tvPrenomBlue1 = (TextView) rootView.findViewById(R.id.activity_main_tv_blue_joueur1);
         tvPrenomBlue2 = (TextView) rootView.findViewById(R.id.activity_main_tv_blue_joueur2);
+        ImageView btnChinois = (ImageView) rootView.findViewById(R.id.activity_main_match_btnChinois);
+        btnChinois.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MatchAddAsync asyncAdd = new MatchAddAsync(getActivity(), getActivity());
+//        // Params pour add un joueur
+        asyncAdd.execute("1", "5", "6", "8", "9");
+            }
+        });
 
         drawer = (DrawerLayout) rootView.findViewById(R.id.drawer_layout);
 
